@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0a0a0a;
+  --bone: #f5f1e8;
+  --lime: #d8ff3e;
+  --hot: #ff3d7f;
+  --cobalt: #2e5bff;
+}
+
+html,
+body {
+  background: var(--bone);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* A chunky editorial display heading */
+.display {
+  font-family: var(--font-display), "ui-sans-serif", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, "SF Mono", monospace;
+  letter-spacing: -0.01em;
+}
+
+/* grain overlay for that early-internet texture */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+}
+
+.hard-shadow {
+  box-shadow: 6px 6px 0 0 #0a0a0a;
+}
+
+.hard-shadow-sm {
+  box-shadow: 3px 3px 0 0 #0a0a0a;
+}
+
+.hard-shadow-lg {
+  box-shadow: 10px 10px 0 0 #0a0a0a;
+}
+
+/* thick black outline (neo-brutalist) */
+.outline-brutal {
+  border: 2px solid #0a0a0a;
+}
+
+.outline-brutal-thick {
+  border: 3px solid #0a0a0a;
+}
+
+.shine {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+}
+
+/* scrollbar polish */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-track {
+  background: #f5f1e8;
+}
+
+/* focus */
+:focus-visible {
+  outline: 3px solid #ff3d7f;
+  outline-offset: 2px;
+}
+
+/* disable body scroll lock during transitions on mobile */
+@media (max-width: 640px) {
+  .hard-shadow {
+    box-shadow: 4px 4px 0 0 #0a0a0a;
+  }
+  .hard-shadow-lg {
+    box-shadow: 6px 6px 0 0 #0a0a0a;
+  }
+}
