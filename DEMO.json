@@ -1,0 +1,47 @@
+{
+  "video_script": [
+    {"goto": "/", "wait_ms": 2800, "caption": "Marketer DNA landing — 12 archetypes, 60-second quiz, live counter"},
+    {"click": "a:has-text('Start the quiz')", "wait_ms": 2000, "caption": "Enter the 10-question diagnostic"},
+    {"click": "button:has-text('Make a meme about it')", "wait_ms": 900, "caption": "Question 1 — forced-choice"},
+    {"click": "button:has-text('Rewrite the hook 40 times')", "wait_ms": 900},
+    {"click": "button:has-text('A three-second hook')", "wait_ms": 900},
+    {"click": "button:has-text('Screenshot the view count')", "wait_ms": 900},
+    {"click": "button:has-text('Turn their objection into the ad')", "wait_ms": 900},
+    {"click": "button:has-text('bookmarked')", "wait_ms": 900},
+    {"click": "button:has-text('9-second TikTok')", "wait_ms": 900},
+    {"click": "button:has-text('cursed Zap')", "wait_ms": 900},
+    {"click": "button:has-text('Double down on organic')", "wait_ms": 900},
+    {"click": "button:has-text('Stopping the scroll')", "wait_ms": 900},
+    {"click": "button:has-text('Reveal my archetype')", "wait_ms": 3500, "caption": "Result screen with Spotify-Wrapped-style card"},
+    {"goto": "/leaderboard", "wait_ms": 2500, "caption": "Live global archetype leaderboard — the second shareable asset"}
+  ],
+  "screenshot_shots": [
+    {"path": "/", "description": "Hero landing with live counter and Wrapped-style preview card", "wait_ms": 2500},
+    {"path": "/quiz", "description": "10-question quiz in progress with progress bar and question dots", "wait_ms": 1500},
+    {"path": "/result/hook-gremlin", "description": "Result screen with Spotify-Wrapped-style card, personalized blurb, and share panel", "wait_ms": 2500},
+    {"path": "/leaderboard", "description": "Live archetype distribution leaderboard with rarest/most-common highlights", "wait_ms": 2000},
+    {"path": "/archetypes", "description": "All 12 archetypes in the canon grid", "wait_ms": 1500},
+    {"path": "/compatibility", "description": "Dream-team compatibility builder with two archetype pickers", "wait_ms": 1500},
+    {"path": "/settings", "description": "Bring-your-own-keys settings panel", "wait_ms": 1500}
+  ],
+  "submission": {
+    "inspiration": "We looked at ConnectsBlue and saw a popularity contest where the voters are the competitors. We also noticed that personality quizzes are the single most battle-tested viral mechanic in internet history — Tickle hit 150M users and Spotify Wrapped had 200M+ people interact in the first 24 hours of 2025. So we inverted the ask. Instead of begging 1,000 fellow marketers for a vote, we hand them a piece of identity content about themselves that they voluntarily broadcast to their professional network.",
+    "what_it_does": "Marketer DNA is a 60-second, 10-question quiz that types the taker as one of 12 marketer archetypes — The Hook Gremlin, The Dashboard Monk, The LinkedIn Philosopher, and nine more. Each result is a screenshot-perfect 9:16 Spotify-Wrapped-style card with an AI-personalized 3-line roast blurb, a superpower/kryptonite stat bar, and one-click share to X, LinkedIn, WhatsApp, and Threads — every caption pre-filled with a link back to our ConnectsBlue submission.",
+    "how_we_built_it": "Next.js 14 App Router + Tailwind + TypeScript on a single codebase. Claude Haiku 4.5 generates the personalized blurbs via an /api/roast route that reads the user's key from an x-user-anthropic-key header (never stored server-side) and falls back to hand-written, Forer-effect-grade canonical blurbs when no key is present. @vercel/og renders the 1080x1920 share card PNG at the edge. An in-memory stats store seeded with 1,047 plausible responses powers the live leaderboard without needing a database. A settings page persists API keys in localStorage and links directly to each provider's signup.",
+    "challenges": "The hardest part wasn't code — it was the copy. Archetype names, taglines, and roast blurbs needed to land in the sweet spot of 90% flattering / 10% playfully self-deprecating so people would actually share them. We hand-edited all 12 archetypes and 10 questions until every forced-choice felt like a specific marketer we knew. The second hard problem was the share loop: every share caption needed to look organic, tag the archetype, and drive a backlink without reading like a call-to-action.",
+    "accomplishments": "A complete viral loop that works end-to-end with zero external dependencies out-of-the-box. Result cards that render in under a second. A leaderboard that looks populated from first page-load. And copywriting that our early testers screenshot-and-send instead of politely closing.",
+    "what_we_learned": "Self-disclosure activates the same dopamine circuit as food and money — so if your hackathon asset is about the voter, you don't need to ask for the vote. We also learned that Satori (the engine behind @vercel/og) requires explicit display:flex on every multi-child div, which is the kind of tiny footgun that eats an hour if you're not ready for it.",
+    "whats_next": "1) Wire the in-memory stats store to Supabase for cross-device persistence. 2) Add a third AI-generated hook variant for each share caption so the same archetype doesn't post the same tweet twice. 3) A ConnectsBlue referral tracker that attributes votes back to the taker who brought them. 4) A 'sibling archetype' explanation — why you're 72% Hook Gremlin, 18% Meme Whisperer, 10% Viral Savant. 5) An admin export of the raw answer matrix for trend reports.",
+    "built_with": [
+      "next.js-14",
+      "typescript",
+      "tailwindcss",
+      "anthropic-claude",
+      "vercel-og",
+      "satori",
+      "react-18",
+      "docker"
+    ],
+    "category_hint": "Marketing / viral loop single-page web experience"
+  }
+}
